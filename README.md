@@ -24,8 +24,12 @@ Bu proje, fizik öğretimi için geliştirilmiş profesyonel bir Snell Kanunu si
 
 ### 📥 Windows Kullanıcıları (Önerilen)
 
-Hazır exe dosyası için GitHub Actions kullanın:
+**🎯 En Kolay Yol - Hazır EXE İndir:**
+1. **[Releases](https://github.com/alibedirhan/CAL-snell-law/releases/latest)** sayfasına gidin
+2. En son sürümden **"SnellKanuluSimulatoru.exe"** dosyasını indirin  
+3. İndirilen exe dosyasını çift tıklayın - hemen çalışır! 🎉
 
+**🔧 Alternatif - GitHub Actions:**
 ```bash
 # 1. Actions sekmesine gidin  
 # 2. "build-exe" workflow'unu çalıştırın (yeşil "Run workflow" butonu)
