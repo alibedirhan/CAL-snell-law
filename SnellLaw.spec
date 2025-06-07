@@ -12,16 +12,20 @@ a = Analysis(
         'numpy.core',
         'numpy.core._methods',
         'numpy.lib.format',
+        'numpy.random',
         'matplotlib',
         'matplotlib.backends',
         'matplotlib.backends.backend_tkagg',
+        'matplotlib.figure',
+        'matplotlib.pyplot',
         'tkinter',
-        'tkinter.messagebox'
+        'tkinter.messagebox',
+        'pkg_resources.py2_warn'
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=['scipy', 'pandas', 'IPython'],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=block_cipher,
@@ -50,5 +54,4 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None
 )
