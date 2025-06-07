@@ -3,8 +3,8 @@ name: Build Windows EXE
 on:
   push:
     tags:
-      - 'v*'  # v1.0.0, v1.1.0 gibi tag'ler için çalışır
-  workflow_dispatch:  # Manuel olarak da çalıştırabilirsiniz
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   build-windows:
@@ -22,43 +22,15 @@ jobs:
     - name: Dependencies kurulumu
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install numpy matplotlib
         pip install pyinstaller
         
     - name: EXE dosyası oluştur
       run: |
         pyinstaller --onefile --windowed --name "SnellKanuluSimulatoru" SnellLaw.py
         
-    - name: Dosyaları kontrol et
-      run: |
-        dir dist\
-        
-    - name: Release oluştur
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: dist/SnellKanuluSimulatoru.exe
-        body: |
-          ## Snell Kanunu Simulatörü ${{ github.ref_name }}
-          
-          ### 🚀 Hızlı İndirme
-          Windows kullanıcıları `SnellKanuluSimulatoru.exe` dosyasını indirip çift tıklayarak çalıştırabilir.
-          
-          ### ✨ Bu Sürümdeki Yenilikler
-          - Fizik hesaplamaları iyileştirildi
-          - Kullanıcı arayüzü güncellenildi
-          - Performans optimizasyonları
-          
-          ### 📋 Sistem Gereksinimleri
-          - Windows 7/8/10/11
-          - En az 10 MB boş alan
-          - Kurulum gerektirmez!
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Upload artifact (eğer tag yoksa)
-      if: "!startsWith(github.ref, 'refs/tags/')"
-      uses: actions/upload-artifact@v3
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
       with:
         name: SnellKanuluSimulatoru-exe
         path: dist/SnellKanuluSimulatoru.exe
