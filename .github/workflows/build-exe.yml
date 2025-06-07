@@ -19,7 +19,7 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Dependencies kurulumu (eski stabil versiyonlar)
+    - name: Dependencies kurulumu
       run: |
         python -m pip install --upgrade pip
         pip install numpy==1.24.3
@@ -32,24 +32,10 @@ jobs:
         python -c "import matplotlib; print('Matplotlib OK')"
         
     - name: EXE dosyası oluştur
-      run: |
-        pyinstaller --onefile --windowed ^
-        --hidden-import=numpy ^
-        --hidden-import=numpy.core ^
-        --hidden-import=numpy.core._methods ^
-        --hidden-import=numpy.lib.format ^
-        --hidden-import=matplotlib ^
-        --hidden-import=matplotlib.backends ^
-        --hidden-import=matplotlib.backends.backend_tkagg ^
-        --hidden-import=tkinter ^
-        --collect-all=numpy ^
-        --collect-all=matplotlib ^
-        --name "SnellKanuluSimulatoru" ^
-        SnellLaw.py
+      run: pyinstaller --onefile --windowed --hidden-import=numpy --hidden-import=numpy.core --hidden-import=numpy.core._methods --hidden-import=numpy.lib.format --hidden-import=matplotlib --hidden-import=matplotlib.backends --hidden-import=matplotlib.backends.backend_tkagg --hidden-import=tkinter --collect-all=numpy --collect-all=matplotlib --name "SnellKanuluSimulatoru" SnellLaw.py
         
-    - name: Test exe file
-      run: |
-        dir dist
+    - name: Test exe dosyası
+      run: dir dist
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
