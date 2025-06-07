@@ -22,12 +22,11 @@ jobs:
     - name: Dependencies kurulumu
       run: |
         python -m pip install --upgrade pip
-        pip install numpy matplotlib
-        pip install pyinstaller
+        pip install numpy matplotlib pyinstaller
         
-    - name: EXE dosyası oluştur
+    - name: EXE dosyası oluştur (spec dosyası ile)
       run: |
-        pyinstaller --onefile --windowed --name "SnellKanuluSimulatoru" SnellLaw.py
+        pyinstaller SnellLaw.spec
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
